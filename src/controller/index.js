@@ -1,4 +1,6 @@
 const setting = require("../config/setting");
+const { MOCK_ARRAY_GPIO } = require("../config/env")
+
 
 class Gpio {
   constructor(r) {
@@ -27,10 +29,9 @@ class Gpio {
   }
 }
 
-const mockRun = true;
 async function init() {
   let gpioModule;
-  if (mockRun) {
+  if (MOCK_ARRAY_GPIO) {
     const { default: r } = await import("./mockArrayGpio.js");
     gpioModule = r;
   }
