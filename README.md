@@ -25,6 +25,15 @@ Create a button ui by updating the [configuration][config] file.
 ## Example
 <img src="./docs/example.png"/>
 
+
+### TODO:
+ - [ ] Move the pin in and pin out logic to backend
+ - [ ] Create a password protected page
+ - [ ] Create a admin page to add button using UI
+ - [ ] Create component
+    - [ ] Create Header
+    - [ ] Create Layout component
+
 <!-- link -->
 [config]: ./src/config/setting.js
 
