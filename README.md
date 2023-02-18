@@ -1,16 +1,16 @@
 # Introduction
-Run a simple web server talk to Raspberry pi using GPIO. Open and close the gate on button click. You can create the button using the [config] file. Update the pin `in` that will signal the Raspberry pi.
+Run a simple web server talk to Raspberry pi using GPIO. You can create the button using the [config] file. Update the pin `in` that will signal the Raspberry pi.
 
-If the button has a pinOut. It will check for the `out` signal, if the state is true, it will disabled the button. You can set the interval of checking the `out` signal in the [config] file under `config.checkStatusInterval` setting. By default it is set to 1500ms. It will disabled and enable the button.
+If the button has a `pin.out`. It will check for the `out` signal, if the state is true, it will disabled the button. You can set the interval of checking the `out` signal in the [config] file under `config.checkStatusInterval` setting. By default it is set to 1500ms. It will disabled and enable the button.
 
 
 
 ## Tech Stack
 1. Express - Create a simple server
-1. ARRAY-GPIO - npm library to emit and list for switch
+1. ARRAY-GPIO - npm library to talk to Raspberry pi
 
 ## How to start
-1. Clone this repo using `git clone https://github.com/Salman2301/gate-ctrl.git`
+1. Clone this repo using `git clone https://github.com/Salman2301/gpio-ui.git`
 1. Open terminal to the downloaded folder
 1. Copy the env from example `cp .env.example .env`
 1. Update env if needed

@@ -1,6 +1,6 @@
 const setting = require("../config/setting");
 
-class GateCtrl {
+class Gpio {
   constructor(r) {
     this.r = r;
   }
@@ -39,7 +39,7 @@ async function init() {
     gpioModule = r;
   }
   
-  return new GateCtrl(gpioModule);
+  return new Gpio(gpioModule);
 }
 
 module.exports = init();
