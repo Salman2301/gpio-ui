@@ -6,7 +6,7 @@ module.exports = {
     {
       label: "Open main gate",
       pin: {
-        in: "11",
+        in: "17",
         out: "36"
       },
       id: "btn-open"
@@ -14,7 +14,7 @@ module.exports = {
     {
       label: "Open garage gate",
       pin: {
-        in: "10",
+        in: "27",
         out: "36"
       },
       id: "btn-garage"
