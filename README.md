@@ -23,10 +23,7 @@ If the button has a pinOut. It will check for the `out` signal, if the state is 
 Create a button ui by updating the [configuration][config] file.
 
 ## Example
-
-<img src="./docs/ui.png" width="46.5%"/>
-<img src="./docs/setting.png" width="51%"/>
-
+<img src="./docs/example.png"/>
 
 <!-- link -->
 [config]: ./src/config/setting.js
