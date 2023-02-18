@@ -1,24 +1,13 @@
 class GateCtrl {
-  constructor(r, inputPin = 11, outputPin = 33) {
-    this.sw = r.in(inputPin);
-    this.led = r.out(outputPin);
-
+  constructor(r) {
+    this.r = r;
   }
 
-  isGateOpening() {
-    return this.isGateOpen();
+  signal(pinIn) {
+    return this.r.in(pinIn).on();
   }
-
-  isGateOpen() {
-    return this.led.state;
-  }
-
-  openGate() {
-    if(!this.isGateOpen()) this.sw.on();
-  }
-
-  closeGate() {
-    if(this.isGateOpen()) this.sw.off();
+  check(pinOut) {
+    return this.r.out(pinOut).state;
   }
 }
 

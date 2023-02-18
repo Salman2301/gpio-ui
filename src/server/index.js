@@ -3,6 +3,7 @@ const express = require('express');
 const loggerMiddleware = require("./middleware/logger");
 const templateMiddleware = require("./middleware/template");
 const apiRoutes = require("./api/01routes");
+const setting = require("../config/setting");
 const helmet = require("helmet");
 const path = require('path');
 
@@ -10,12 +11,23 @@ const path = require('path');
 
 const app = express();
 
-// @ts-expect-error // FIX: Not sure why it throws error
-app.use(helmet());
+app.use(
+  // @ts-expect-error // FIX: Not sure why it throws error
+  helmet({
+    contentSecurityPolicy: false
+  })
+);
 app.use(loggerMiddleware);
 app.use(templateMiddleware);
 
-app.use("/", express.static(path.join(__dirname, 'public')));
+// homepage
+app.set('views', path.join(__dirname,'./public'));
+app.set('view engine', 'pug')
+app.get('/', (req, res) => {
+  res.render('./index', setting)
+});
+
+// Api routes
 app.use("/api", apiRoutes);
 
 

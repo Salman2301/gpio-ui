@@ -41,14 +41,25 @@ body {
   user-select: none;;
 }
 
-.btn:hover {
-  filter: brightness(0.85)
-}
-
 .status-container {
   font-size: 28px;
 }
 
 span#text-status {
   font-weight: 600;
+  color: var(--theme-color-light-green);
+}
+
+button {
+  border: 0px;
+  outline: 0px;
+  color: var(--theme-color-white);
+}
+.btn:hover:not(:disabled) {
+  filter: brightness(0.85)
+}
+
+
+button:disabled {
+  background-color: #A0A0A0;
 }

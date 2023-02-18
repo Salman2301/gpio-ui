@@ -1,0 +1,25 @@
+html
+  head
+    title= title
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    style
+      include global.css
+  body
+    .container
+      each val in buttons
+        button.btn(id= val.id, data-pin-in= val.pin.in)(data-pin-out= val.pin.out)
+          = val.label
+
+    script.
+      window.config = !{JSON.stringify(config)};
+      console.log({ c: window.config })
+    script 
+      include main.js
+
+
+
+
+    //- script(type='text/javascript', src="./main.js")

@@ -1,17 +1,16 @@
 const { Router } = require("express");
 const homepageRoute = require("./02homepage");
-const gpioStateRoute = require("./03gpioState");
-const gpioOpenRoute = require("./04gpioOpen");
-const gpioCloseRoute = require("./05gpioClose");
+const gpioSignalRoute = require("./03gpioSignal");
+const gpioCheckRoute = require("./04gpioCheck");
 
-
+// api router
+// start with /api
 const routes = Router();
 
 routes.get("/", homepageRoute);
 
-routes.get("/gpio/state", gpioStateRoute);
-routes.get("/gpio/open", gpioOpenRoute);
-routes.get("/gpio/close", gpioCloseRoute);
+routes.get("/gpio/signal/:pinIn", gpioSignalRoute);
+routes.get("/gpio/check/:pinOut", gpioCheckRoute);
 
 
 

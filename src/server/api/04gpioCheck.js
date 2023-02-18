@@ -1,5 +1,8 @@
 const ctrl = require("../../controller/index");
 
 module.exports = async function (req, res) {
-  res.locals.send((await ctrl).isGateOpen());
+  const state = (await ctrl).check(req.params.pinOut);
+  res.locals.send({
+    state
+  });
 };
