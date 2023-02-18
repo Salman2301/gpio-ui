@@ -9,17 +9,13 @@ html
       include global.css
   body
     .container
+      if env.MOCK_ARRAY_GPIO
+        p.mock !!Mocking GPIO!!
       each val in buttons
-        button.btn(id= val.id, data-pin-in= val.pin.in)(data-pin-out= val.pin.out)
+        button.btn(id= val.id)
           = val.label
 
     script.
       window.config = !{JSON.stringify(config)};
-      console.log({ c: window.config })
     script 
       include main.js
-
-
-
-
-    //- script(type='text/javascript', src="./main.js")

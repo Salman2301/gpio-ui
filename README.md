@@ -27,7 +27,7 @@ Create a button ui by updating the [configuration][config] file.
 
 
 ### TODO:
- - [ ] Move the pin in and pin out logic to backend
+ - [x] Move the pin in and pin out logic to backend
  - [ ] Create a password protected page
  - [ ] Create a admin page to add button using UI
  - [ ] Create component

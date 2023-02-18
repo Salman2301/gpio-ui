@@ -17,10 +17,10 @@ async function handleBtnClick(e) {
   const el = e.target;
   if (!el) alert("Failed to handle click event. no element found!");
 
-  const pinIn = el.getAttribute("data-pin-in");
+  const btnId = el.getAttribute("id");
   
-  const resState = await fetchJson(`/api/gpio/signal/${pinIn}`);
-  alert(`Sent signal ${pinIn}`)
+  const resState = await fetchJson(`/api/gpio/signal/${btnId}`);
+  alert(`Sent signal.`)
   updateStatus();
 }
 
@@ -36,8 +36,8 @@ async function updateStatus() {
   const $btns = document.getElementsByClassName("btn");
   
   for (const $btn of $btns) {
-    const pinOut = $btn.getAttribute("data-pin-out")    
-    const resState = await fetchJson(`/api/gpio/check/${pinOut}`);
+    const btnId = $btn.getAttribute("id")    
+    const resState = await fetchJson(`/api/gpio/check/${btnId}`);
     
     const state = resState.message.state;
     if (state) {

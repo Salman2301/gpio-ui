@@ -1,13 +1,29 @@
+const setting = require("../config/setting");
+
 class GateCtrl {
   constructor(r) {
     this.r = r;
   }
 
-  signal(pinIn) {
-    return this.r.in(pinIn).on();
+  signal(btnId) {
+    const button = this.getButton(btnId);
+    if (!button) return;
+    console.log(`Signal ${button.pin.in}!`);
+    return this.r.in(button.pin.in).on();
   }
-  check(pinOut) {
-    return this.r.out(pinOut).state;
+  check(btnId) {
+    const button = this.getButton(btnId);
+    if (!button) return;
+    return this.r.out(button.pin.out).state;
+  }
+
+  getButton(btnId) {
+    const button = setting.buttons.find(e => e.id===btnId);
+    if (!button) {
+      console.error(`Failed to get the button id ${btnId}`)
+      return;
+    }
+    return button;
   }
 }
 
