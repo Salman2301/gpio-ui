@@ -11,7 +11,7 @@ html
     .container
       if env.MOCK_ARRAY_GPIO
         p.mock !!Mocking GPIO!!
-      each val in buttons
+      each val in action
         button.btn(id= val.id)
           = val.label
 

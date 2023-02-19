@@ -1,7 +1,7 @@
 const { HOST, PORT, MOCK_ARRAY_GPIO } = require("../config/env");
 const express = require('express');
 const loggerMiddleware = require("../service/middleware/logger");
-const templateMiddleware = require("../service/middleware/logger");
+const templateMiddleware = require("../service/middleware/template");
 const apiRoutes = require("./api/01routes");
 const setting = require("../config/setting");
 const helmet = require("helmet");

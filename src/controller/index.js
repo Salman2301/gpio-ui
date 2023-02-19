@@ -20,7 +20,7 @@ class Gpio {
 
     const switchMode = stepState ? "on" : "off";
     console.log(`Signal pin ${switchMode}!`);
-    return this.r.out(step.pin)[switchMode]();
+    return this.r.in(step.pin)[switchMode]();
   }
 
   /**
