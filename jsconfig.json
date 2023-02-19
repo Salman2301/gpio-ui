@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6"
+  },
+  "include": [
+    "./src/index.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

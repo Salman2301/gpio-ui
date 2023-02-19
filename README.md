@@ -1,8 +1,21 @@
+<center>
+
+### `!!Work in progress!!`
+
+</center>
+
 # Introduction
-Run a simple web server talk to Raspberry pi using GPIO. You can create the button using the [config] file. Update the pin `in` that will signal the Raspberry pi.
+Run a simple web server talk to Raspberry pi using GPIO. You can create the action using the [config] file. Update the steps fields that will run when the action triggered. The config file has typescript, allow user to write their config at ease. Use editor like **Vscode** for better intellisense.
 
-If the button has a `pin.out`. It will check for the `out` signal, if the state is true, it will disabled the button. You can set the interval of checking the `out` signal in the [config] file under `config.checkStatusInterval` setting. By default it is set to 1500ms. It will disabled and enable the button.
+### Steps
+1. `Step Pin`
+Trigger the pin, Set the mode to `on` `off` or `toggle`. That will update the pin on the raspberry pi.
+ 1. `Step Sleep`
+This step will wait until it can run the next step. The `wait` field take the value in `ms`.
 
+### Config
+##### `checkStatusInterval`
+This field is useful for th action button disabled and enabled. This will run through all the action button and check for the `disabled` field. It will take the selector pin and selector state of that action button. If the state of the pin is matched, It will disabled the action button.
 
 
 ## Tech Stack
@@ -23,6 +36,7 @@ If the button has a `pin.out`. It will check for the `out` signal, if the state 
 Create a button ui by updating the [configuration][config] file.
 
 ## Example
+> !Note the config file has been changed check the [config].
 <img src="./docs/example.png"/>
 
 
@@ -36,4 +50,3 @@ Create a button ui by updating the [configuration][config] file.
 
 <!-- link -->
 [config]: ./src/config/setting.js
-

@@ -1,29 +1,76 @@
 const setting = require("../config/setting");
+const { sleep } = require("../service/utility/async");
 
 class Gpio {
   constructor(r) {
     this.r = r;
   }
 
-  signal(btnId) {
-    const button = this.getButton(btnId);
-    if (!button) return;
-    console.log(`Signal ${button.pin.in}!`);
-    return this.r.in(button.pin.in).on();
-  }
-  check(btnId) {
-    const button = this.getButton(btnId);
-    if (!button) return;
-    return this.r.out(button.pin.out).state;
+  /**
+   * 
+   * @param {import("../index").StepPin} step 
+   * @returns {Promise<any>}
+   */
+  stepPin(step) {
+    
+    const stepMode = step.mode;
+    const stepState = stepMode === "toggle" ? !this.getState(step.pin) : stepMode === "on";
+
+    const switchMode = stepState ? "on" : "off";
+    console.log(`Signal pin ${switchMode}!`);
+    return this.r.out(step.pin)[switchMode]();
   }
 
-  getButton(btnId) {
-    const button = setting.buttons.find(e => e.id===btnId);
-    if (!button) {
-      console.error(`Failed to get the button id ${btnId}`)
+  /**
+   * 
+   * @param {import("../index").StepSleep} step 
+   * @returns {Promise<any>}
+   */
+  stepSleep(step) {
+    return sleep(step.wait);
+  }
+
+  /**
+   * Return the state for the pin
+   * @param {number} pin 
+   * @returns {boolean}
+   */
+  getState(pin) {
+    return this.r.out(pin).state;
+  }
+
+  getAction(actionId) {
+    const action = setting.action.find(e => e.id===actionId);
+    if (!action) {
+      console.error(`Failed to get the action id ${actionId}`)
       return;
     }
-    return button;
+    return action;
+  }
+
+  async trigger(actionId) {
+    const action = this.getAction(actionId);
+    if (!action) {
+      console.error("Failed to trigger action ", actionId);
+      return;
+    }
+    for (const step of action.steps) {
+      if (step.type === "pin") {
+        this.stepPin(step);
+      }
+      else if (step.type === "sleep") {
+        await this.stepSleep(step);
+      }
+    }
+  }
+
+  isDisabled(actionId) {
+    const action = this.getAction(actionId);
+    if (!action || !action.disable) return false;
+    
+    const state = this.getState(action.disable.selectorPin)
+
+    return state === action.disable.selectorState;
   }
 }
 

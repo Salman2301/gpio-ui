@@ -1,28 +1,37 @@
-module.exports = {
+/** @type {import("../index").SettingPage} */
+const setting = {
   title: "Gate Controller",
   // Create a button with pin in and out
   // out pin will look for signal
-  buttons: [
+  action: [
     {
+      type: "button",
       label: "Open main gate",
-      pin: {
-        in: "11",
-        out: "36"
+      id: "btn-open",
+      disable: {
+        selectorPin: 11,
+        selectorState: true
       },
-      id: "btn-open"
-    },
-    {
-      label: "Open garage gate",
-      pin: {
-        in: "10",
-        out: "36"
-      },
-      id: "btn-garage"
-    },
+      steps: [
+        {
+          type: "pin",
+          pin: 11,
+          mode: "toggle"
+        },
+        {
+          type: "sleep",
+          wait: 3000
+        }
+      ]
+
+    }
   ],
 
   config: {
     // Check the output signal every ms 
-    checkStatusInterval: 5000,
+    checkStatusInterval: 1500,
   }
 }
+
+
+module.exports = setting;

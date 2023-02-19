@@ -19,7 +19,7 @@ async function handleBtnClick(e) {
 
   const btnId = el.getAttribute("id");
   
-  const resState = await fetchJson(`/api/gpio/signal/${btnId}`);
+  const resState = await fetchJson(`/api/gpio/trigger/${btnId}`);
   alert(`Sent signal.`)
   updateStatus();
 }
@@ -37,10 +37,10 @@ async function updateStatus() {
   
   for (const $btn of $btns) {
     const btnId = $btn.getAttribute("id")    
-    const resState = await fetchJson(`/api/gpio/check/${btnId}`);
+    const resState = await fetchJson(`/api/gpio/is-disabled/${btnId}`);
     
-    const state = resState.message.state;
-    if (state) {
+    const isDisabled = resState.message.isDisabled;
+    if (isDisabled) {
       $btn.setAttribute("disabled", "true");
     }
     else {
@@ -58,4 +58,3 @@ function sleep(ms=5000) {
 function fetchJson(path) {
   return fetch(path).then(res => res.json()).catch(console.error);
 }
-
